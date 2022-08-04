@@ -1,3 +1,5 @@
+import './CountriesContainer.css';
+
 import React, {useState, useEffect} from 'react';
 import CountryDetail from '../Components/CountryDetail';
 import CountrySelector from '../Components/CountrySelect';
@@ -16,6 +18,7 @@ const CountryContainer = () => {
     const getCountries = () => {
         fetch('https://restcountries.com/v3.1/all')
         .then(res => res.json())
+        .then()
         .then(countries => setCountries(countries))
     }
 
@@ -25,6 +28,11 @@ const CountryContainer = () => {
 
     const onFavouriteSelected = () => {
         // event.preventDefault();
+        for(let country of favouriteCountries) {
+            if (country.name.common === selectedCountry.name.common) {
+                return;
+            }
+        }
         const copyFaves = [...favouriteCountries];
         copyFaves.push(selectedCountry)
         setFavouriteCountries(copyFaves);
@@ -36,8 +44,10 @@ const CountryContainer = () => {
             <h1> Countries List</h1>
             <h5> Total Global Population: <GlobalPop countries={countries} /> </h5> 
             <CountrySelector countries={countries} onCountrySelected={onCountrySelected} />
+            <div class="page-elements">
             {selectedCountry ? <CountryDetail selectedCountry={selectedCountry} onFavouriteSelected={onFavouriteSelected}/> : null}
             <h3>Favourites: <FavouriteList favouriteCountries={favouriteCountries} /> </h3>
+            </div>
 
         </div>
     )
