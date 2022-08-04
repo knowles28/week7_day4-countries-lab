@@ -26,7 +26,7 @@ const CountryContainer = () => {
     const onFavouriteSelected = () => {
         // event.preventDefault();
         const copyFaves = [...favouriteCountries];
-        copyFaves.push({selectedCountry})
+        copyFaves.push(selectedCountry)
         setFavouriteCountries(copyFaves);
     }
 

@@ -3,7 +3,7 @@ import React from "react";
 
 const FavouriteItem = ({country}) => {
 
-    return <li>{country.flag} {country.name.common}</li>
+    return <li>{country.flag} </li>
 }
 
 export default FavouriteItem;
